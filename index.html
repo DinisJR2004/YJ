@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Yellow Jack</title>
+</head>
+<body>
+    
+    <!-- Menus carne/peixe -->
+
+    <div>
+        <h2>▶ Menus Completos ◀</h2>
+    </div>
+
+    <div class="menu-item" data-price="16000">Menu Motard (3 de Cada) - 16 000,00 €</div>
+    <div class="menu-item" data-price="16500">Menu Motard Com Bebidas - 16 500,00 €</div>
+    <div class="menu-item" data-price="21000">Menu Vipers (5 de Cada) - 21 000,00 €</div>
+    <div class="menu-item" data-price="21500">Menu Vipers Com Bebidas - 21 500,00 €</div>
+    <div class="menu-item" data-price="30000">Menu Yellow Jack (10 de Cada) - 30 000,00 €</div>
+    <div class="menu-item" data-price="30500">Menu Yellow Jack Com Bebidas - 30 500,00 €</div>
+
+    <!-- Menus carne -->
+
+    <div>
+        <h2>▶ Menus de Carne ◀</h2>
+    </div>
+    
+    <div class="menu-item" data-price="7500">Menu Motard (3 de Cada) - 7 500,00 €</div>
+    <div class="menu-item" data-price="8000">Menu Motard Com Bebidas - 8 000,00 €</div>
+    <div class="menu-item" data-price="14000">Menu Vipers (5 de Cada) - 14 000,00 €</div>
+    <div class="menu-item" data-price="14500">Menu Vipers Com Bebidas - 14 500,00 €</div>
+    <div class="menu-item" data-price="21000">Menu Yellow Jack (10 de Cada) - 21 000,00 €</div>
+    <div class="menu-item" data-price="21500">Menu Yellow Jack Com Bebidas - 21 500,00 €</div>
+
+    <!-- Menus peixe -->
+
+    <div>
+        <h2>▶ Menus de Peixe ◀</h2>
+    </div>
+    
+    <div class="menu-item" data-price="12000">Menu Motard (3 de Cada) - 12 000,00 €</div>
+    <div class="menu-item" data-price="12500">Menu Motard Com Bebidas - 12 500,00 €</div>
+    <div class="menu-item" data-price="17000">Menu Vipers (5 de Cada) - 17 000,00 €</div>
+    <div class="menu-item" data-price="17500">Menu Vipers Com Bebidas - 17 500,00 €</div>
+    <div class="menu-item" data-price="23000">Menu Yellow Jack (10 de Cada) - 23 000,00 €</div>
+    <div class="menu-item" data-price="23500">Menu Yellow Jack Com Bebidas - 23 500,00 €</div>
+
+    <!-- Bebidas -->
+
+    <div>
+        <h2>▶ Bebidas ◀</h2>
+    </div>
+    
+    <div class="menu-item" data-price="2000">Mojito - 2 000,00 €</div>
+    <div class="menu-item" data-price="1500">Vodka - 1 500,00 €</div>
+    <div class="menu-item" data-price="1500">Tequila - 1 500,00 €</div>
+    <div class="menu-item" data-price="1500">Whiskey - 1 500,00 €</div>
+    <div class="menu-item" data-price="1500">Vodka - 1 500,00 €</div>
+    <div class="menu-item" data-price="1500">Vinho - 1 500,00 €</div>
+    <div class="menu-item" data-price="250">Cerveja - 250,00 €</div>
+    <div class="menu-item" data-price="65">Iced-Tea - 65,00 €</div>
+    <div class="menu-item" data-price="35">Coca-Cola - 35,00 €</div>
+    <div class="menu-item" data-price="35">Leite - 35,00 €</div>
+    <div class="menu-item" data-price="25">Café - 25,00 €</div>
+    <div class="menu-item" data-price="15">Água - 15,00 €</div>
+
+    <!-- Comida -->
+
+    <div>
+        <h2>▶ Comida ◀</h2>
+    </div>
+    
+    <div class="menu-item" data-price="1000">Francesinha - 1 000,00 €</div>
+    <div class="menu-item" data-price="1000">Bifana - 1 000,00 €</div>
+    <div class="menu-item" data-price="1000">Bolinho de Bacalhau - 1 000,00 €</div>
+    <div class="menu-item" data-price="1000">Pataniscas - 1 000,00 €</div>
+    <div class="menu-item" data-price="500">Tremoços - 500,00 €</div>
+    <div class="menu-item" data-price="110">Hamburguer - 110,00 €</div>
+    <div class="menu-item" data-price="85">Chocolate - 85,00 €</div>
+    <div class="menu-item" data-price="70">Bolinho - 70,00 €</div>
+    <div class="menu-item" data-price="55">Sanduíche - 55,00 €</div>
+    <div class="menu-item" data-price="50">Pão - 50,00 €</div>
+
+    <!-- Descontos -->
+
+    <div class="order-summary">
+        <h2>Descontos</h2>
+        <button id="calculate-35-button">Desconto 35%</button>
+        <button id="calculate-50-button">Desconto 50%</button>
+    </div>
+
+    <!-- Total/Botao Reset -->
+
+    <div class="selected-items">
+        <h2>▶ Itens Selecionados ◀</h2>
+        <ul id="selected-items-list"></ul>
+    </div>
+      
+    <div class="total">Total: <span id="total-amount">0</span> € </div>
+    <button id="reset-button">Reiniciar</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.menu-item {
+    padding: 10px; /* Aumentar o padding para tornar os retângulos mais visíveis */
+    margin: 5px;
+    background-color: #7f7f7f;
+    cursor: pointer;
+    border: 2px solid #555; /* Borda para os retângulos */
+    border-radius: 5px; /* Bordas arredondadas */
+    width: 500px; /* Largura para os retângulos */
+    text-align: center;
+    color: white;
+}
+
+.menu-item:hover {
+    background-color: #ddd;
+}
+
+.total {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+body {
+    background-image: url("YellowJackLogo.png"), url("YellowJackLogo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 1000px;
+}
+
+
