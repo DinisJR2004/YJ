@@ -1,107 +1,557 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Yellow Jack</title>
+    <link rel="icon" href="logo.png" type="image/png">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2c2c2c;
+            /* Cinza escuro para o fundo */
+            color: #f4f4f4;
+            /* Texto claro para contrastar */
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Plane Crash', cursive;
+            /* Fonte estilo motard */
+            font-weight: normal;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #333;
+            /* Fundo um pouco mais claro para o conteúdo */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            /* Alinha os itens na vertical */
+            align-items: center;
+            /* Alinha os itens ao centro */
+            padding-bottom: 30px;
+            border-bottom: 2px solid #444;
+            /* Alterado para um cinza mais claro */
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: #f4f4f4;
+            /* Cor do texto do cabeçalho */
+            margin: 0;
+            /* Remove a margem do título */
+        }
+
+        header .link-informativo {
+            margin-top: 10px;
+            /* Adiciona um espaço entre o título e o link */
+            font-size: 1rem;
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        header .link-informativo:hover {
+            color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        header img {
+            width: 150px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: #f4f4f4;
+            /* Cor do texto do cabeçalho */
+        }
+
+        /* Títulos das seções */
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: #f4f4f4;
+            /* Título claro */
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: #ddd;
+            /* Cor mais suave para subtítulos */
+            margin-bottom: 10px;
+        }
+
+        /* Estilo para as categorias */
+        .categoria {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .categoria h3 {
+            font-size: 1.4rem;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para os quadrados dos itens */
+        .selecao-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .selecao-item {
+            display: inline-block;
+            width: 160px;
+            height: 160px;
+            background-color: #4c9b4c;
+            /* Verde pastel para Comida */
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .selecao-item:hover {
+            background-color: #3a7f3a;
+            /* Verde mais escuro no hover */
+            transform: translateY(-5px);
+        }
+
+        /* Letras dos quadrados */
+        .selecao-item h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #000000;
+            /* Texto claro */
+        }
+
+        .selecao-item p {
+            font-size: 1rem;
+            color: #000000;
+            /* Texto mais suave */
+        }
+
+        /* Estilo específico para as categorias */
+        #selecaoMenus .selecao-item {
+            background-color: #d58686;
+            /* Rosa pastel */
+        }
+
+        #selecaoComida .selecao-item {
+            background-color: #4c9b4c;
+            /* Verde pastel */
+        }
+
+        #selecaoBebida .selecao-item {
+            background-color: #699ccf;
+            /* Azul pastel */
+        }
+
+        #selecaoBebidasEspirituais .selecao-item {
+            background-color: #e7748d;
+            /* Rosa claro */
+        }
+
+        #selecaoAfiliados .selecao-item {
+            background-color: #d5cd69;
+            /* Amarelo pastel */
+        }
+
+        #selecaoAluguerMotos .selecao-item {
+            background-color: #d1bc77;
+            /* Amarelo suave */
+        }
+
+        /* Hover para as cores */
+        #selecaoMenus .selecao-item:hover {
+            background-color: #e4b5b5;
+            /* Rosa mais claro */
+        }
+
+        #selecaoComida .selecao-item:hover {
+            background-color: #3a7f3a;
+            /* Verde mais escuro */
+        }
+
+        #selecaoBebida .selecao-item:hover {
+            background-color: #5f8bb2;
+            /* Azul mais escuro */
+        }
+
+        #selecaoBebidasEspirituais .selecao-item:hover {
+            background-color: #f59b9b;
+            /* Rosa mais claro */
+        }
+
+        #selecaoAfiliados .selecao-item:hover {
+            background-color: #d4b75d;
+            /* Amarelo mais claro */
+        }
+
+        #selecaoAluguerMotos .selecao-item:hover {
+            background-color: #d1a457;
+            /* Amarelo mais claro */
+        }
+
+        /* Estilo para os itens selecionados */
+        #listaItens {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #444;
+            /* Fundo mais escuro */
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #555;
+            /* Cor de fundo dos itens selecionados */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .item input {
+            width: 60px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #777;
+        }
+
+        .item button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .item button:hover {
+            background-color: #e60000;
+        }
+
+        /* Estilo para o rodapé e total */
+        .total-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            border-top: 2px solid #444;
+            /* Cor de borda mais clara */
+            padding-top: 20px;
+        }
+
+        .total-container h3 {
+            font-size: 1.4rem;
+            color: #f4f4f4;
+            /* Texto claro para o total */
+        }
+
+        select,
+        button {
+            padding: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #444;
+            /* Borda mais clara */
+            background-color: #555;
+            /* Fundo escuro para os botões */
+            color: #f4f4f4;
+            /* Texto claro */
+            transition: background-color 0.3s ease;
+        }
+
+        select:focus,
+        button:focus {
+            outline: none;
+            background-color: #666;
+            /* Foco mais escuro */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilo para o link informativo */
+        .link-informativo {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .link-informativo:hover {
+            color: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
+
 <body>
-    
-    <!-- Menus carne/peixe -->
 
-    <div>
-        <h2>▶ Menus Completos ◀</h2>
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Logo do Restaurante">
+            <h1>Yellow Jack</h1>
+            <a href="https://github.com/DinisJR2004" target="_blank" class="link-informativo">__dinis__</a>
+        </header>
+
+        <div class="categoria">
+            <h3>Menus</h3>
+            <div class="selecao-container" id="selecaoMenus"></div>
+        </div>
+
+        <div class="categoria">
+            <h3>Comida</h3>
+            <div class="selecao-container" id="selecaoComida"></div>
+        </div>
+
+        <div class="categoria">
+            <h3>Bebida</h3>
+            <div class="selecao-container" id="selecaoBebida"></div>
+        </div>
+
+        <div class="categoria">
+            <h3>Bebidas Espirituais</h3>
+            <div class="selecao-container" id="selecaoBebidasEspirituais"></div>
+        </div>
+
+        <div class="categoria">
+            <h3>Afiliados</h3>
+            <div class="selecao-container" id="selecaoAfiliados"></div>
+        </div>
+
+        <div class="categoria">
+            <h3>Aluguer de Motos</h3>
+            <div class="selecao-container" id="selecaoAluguerMotos"></div>
+        </div>
+
+        <h2>Itens Selecionados</h2>
+        <div id="listaItens"></div>
+
+        <div class="total-container">
+            <div>
+                <h3>Desconto:</h3>
+                <div class="desconto-buttons">
+                    <button data-desconto="0" class="selected">0%</button>
+                    <button data-desconto="0.35">35%</button>
+                    <button data-desconto="0.50">50%</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; display: flex; align-items: center; gap: 10px;">
+                <input type="text" id="nomeFuncionario" placeholder="Nome do Funcionário"
+                    style="padding: 10px; border-radius: 5px; border: 1px solid #444; background-color: #555; color: #f4f4f4;">
+
+                <!-- Novo input para o código -->
+                <input type="text" id="codigoPedido" placeholder="Código do Pedido"
+                    style="padding: 10px; border-radius: 5px; border: 1px solid #444; background-color: #555; color: #f4f4f4;">
+
+                <button onclick="faturarPedido()">Faturar</button>
+            </div>
+
+            <button onclick="gerarCodigoAgora()">Gerar Código Agora</button>
+
+            <div>
+                <h3>Total: <span id="total">0€</span></h3>
+            </div>
+        </div>
     </div>
 
-    <div class="menu-item" data-price="16000">Menu Motard (3 de Cada) - 16 000,00 €</div>
-    <div class="menu-item" data-price="16500">Menu Motard Com Bebidas - 16 500,00 €</div>
-    <div class="menu-item" data-price="21000">Menu Vipers (5 de Cada) - 21 000,00 €</div>
-    <div class="menu-item" data-price="21500">Menu Vipers Com Bebidas - 21 500,00 €</div>
-    <div class="menu-item" data-price="30000">Menu Yellow Jack (10 de Cada) - 30 000,00 €</div>
-    <div class="menu-item" data-price="30500">Menu Yellow Jack Com Bebidas - 30 500,00 €</div>
+    <script>
+        let itens = [];
+        const precos = {
+            "Menu Especial": { preco: 30, categoria: 'menus' },
+            "Prato Principal": { preco: 20, categoria: 'comida' },
+            "Sobremesa": { preco: 7, categoria: 'comida' },
+            "Bebida": { preco: 5, categoria: 'bebida' },
+            "Cerveja": { preco: 3, categoria: 'bebidasEspirituais' },
+            "Vinho": { preco: 12, categoria: 'bebidasEspirituais' },
+            "Salada": { preco: 6, categoria: 'afiliados' },
+            "Pizza": { preco: 15, categoria: 'afiliados' },
+            "Aluguel de Moto": { preco: 50, categoria: 'aluguerMotos' }
+        };
 
-    <!-- Menus carne -->
+        function gerarItens() {
+            const categorias = ['menus', 'comida', 'bebida', 'bebidasEspirituais', 'afiliados', 'aluguerMotos'];
 
-    <div>
-        <h2>▶ Menus de Carne ◀</h2>
-    </div>
-    
-    <div class="menu-item" data-price="7500">Menu Motard (3 de Cada) - 7 500,00 €</div>
-    <div class="menu-item" data-price="8000">Menu Motard Com Bebidas - 8 000,00 €</div>
-    <div class="menu-item" data-price="14000">Menu Vipers (5 de Cada) - 14 000,00 €</div>
-    <div class="menu-item" data-price="14500">Menu Vipers Com Bebidas - 14 500,00 €</div>
-    <div class="menu-item" data-price="21000">Menu Yellow Jack (10 de Cada) - 21 000,00 €</div>
-    <div class="menu-item" data-price="21500">Menu Yellow Jack Com Bebidas - 21 500,00 €</div>
+            categorias.forEach(categoria => {
+                const container = document.getElementById(`selecao${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`);
+                container.innerHTML = "";
+                for (const item in precos) {
+                    if (precos[item].categoria === categoria) {
+                        const preco = precos[item].preco;
+                        const itemHtml = `<div class="selecao-item" onclick="adicionarItem('${item}', ${preco}, '${categoria}')">
+                                            <h3>${item}</h3>
+                                            <p>${preco}€</p>
+                                          </div>`;
+                        container.innerHTML += itemHtml;
+                    }
+                }
+            });
+        }
 
-    <!-- Menus peixe -->
+        function adicionarItem(nome, preco, categoria) {
+            let existente = itens.find(item => item.nome === nome);
+            if (existente) {
+                existente.quantidade++;
+            } else {
+                itens.push({ nome: nome, preco: preco, quantidade: 1, categoria: categoria });
+            }
+            atualizarLista();
+        }
 
-    <div>
-        <h2>▶ Menus de Peixe ◀</h2>
-    </div>
-    
-    <div class="menu-item" data-price="12000">Menu Motard (3 de Cada) - 12 000,00 €</div>
-    <div class="menu-item" data-price="12500">Menu Motard Com Bebidas - 12 500,00 €</div>
-    <div class="menu-item" data-price="17000">Menu Vipers (5 de Cada) - 17 000,00 €</div>
-    <div class="menu-item" data-price="17500">Menu Vipers Com Bebidas - 17 500,00 €</div>
-    <div class="menu-item" data-price="23000">Menu Yellow Jack (10 de Cada) - 23 000,00 €</div>
-    <div class="menu-item" data-price="23500">Menu Yellow Jack Com Bebidas - 23 500,00 €</div>
+        function atualizarLista() {
+            let listaHtml = "";
+            itens.forEach((item, index) => {
+                listaHtml += `<div class='item'>
+                    ${item.nome} - ${item.preco}€ x 
+                    <input type='number' value='${item.quantidade}' min='1' onchange='atualizarQuantidade(${index}, this.value)' >
+                    <button onclick='removerItem(${index})'>Remover</button>
+                </div>`;
+            });
+            document.getElementById("listaItens").innerHTML = listaHtml;
+            calcularTotal();
+        }
 
-    <!-- Bebidas -->
+        function calcularTotal() {
+            let total = 0;
+            let desconto = parseFloat(document.querySelector('.desconto-buttons button.selected').getAttribute('data-desconto'));
 
-    <div>
-        <h2>▶ Bebidas ◀</h2>
-    </div>
-    
-    <div class="menu-item" data-price="2000">Mojito - 2 000,00 €</div>
-    <div class="menu-item" data-price="1500">Vodka - 1 500,00 €</div>
-    <div class="menu-item" data-price="1500">Tequila - 1 500,00 €</div>
-    <div class="menu-item" data-price="1500">Whiskey - 1 500,00 €</div>
-    <div class="menu-item" data-price="1500">Vodka - 1 500,00 €</div>
-    <div class="menu-item" data-price="1500">Vinho - 1 500,00 €</div>
-    <div class="menu-item" data-price="250">Cerveja - 250,00 €</div>
-    <div class="menu-item" data-price="65">Iced-Tea - 65,00 €</div>
-    <div class="menu-item" data-price="35">Coca-Cola - 35,00 €</div>
-    <div class="menu-item" data-price="35">Leite - 35,00 €</div>
-    <div class="menu-item" data-price="25">Café - 25,00 €</div>
-    <div class="menu-item" data-price="15">Água - 15,00 €</div>
+            itens.forEach(item => {
+                total += (item.preco * item.quantidade) * (1 - desconto);
+            });
 
-    <!-- Comida -->
+            document.getElementById("total").innerText = total.toFixed(2) + "€";
+        }
 
-    <div>
-        <h2>▶ Comida ◀</h2>
-    </div>
-    
-    <div class="menu-item" data-price="1000">Francesinha - 1 000,00 €</div>
-    <div class="menu-item" data-price="1000">Bifana - 1 000,00 €</div>
-    <div class="menu-item" data-price="1000">Bolinho de Bacalhau - 1 000,00 €</div>
-    <div class="menu-item" data-price="1000">Pataniscas - 1 000,00 €</div>
-    <div class="menu-item" data-price="500">Tremoços - 500,00 €</div>
-    <div class="menu-item" data-price="110">Hamburguer - 110,00 €</div>
-    <div class="menu-item" data-price="85">Chocolate - 85,00 €</div>
-    <div class="menu-item" data-price="70">Bolinho - 70,00 €</div>
-    <div class="menu-item" data-price="55">Sanduíche - 55,00 €</div>
-    <div class="menu-item" data-price="50">Pão - 50,00 €</div>
+        function gerarCodigo() {
+            const codigo = Math.floor(100000 + Math.random() * 900000);
+            return codigo.toString();
+        }
 
-    <!-- Descontos -->
+        function gerarCodigoAgora() {
+            const codigo = gerarCodigo();
+            localStorage.setItem("codigoAutenticacao", codigo); // Armazenando o código gerado no localStorage
+            enviarParaDiscord(codigo);
+        }
 
-    <div class="order-summary">
-        <h2>Descontos</h2>
-        <button id="calculate-35-button">Desconto 35%</button>
-        <button id="calculate-50-button">Desconto 50%</button>
-    </div>
+        function enviarParaDiscord(codigo) {
+            const mensagem = `🚨 **Novo código de autenticação:** ${codigo}`;
+            const webhookUrl = "https://canary.discord.com/api/webhooks/1357507616544133250/zhbW9dWKGpg6s_epty_EWLJq4bX8mB85vgktHhhmBgUKldBXWcqDED0a77_qY-JeTTbU";
+            
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ content: mensagem })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Código enviado com sucesso para o Discord!");
+                } else {
+                    alert("Erro ao enviar o código para o Discord.");
+                }
+            })
+            .catch(error => {
+                alert("Erro ao enviar o código para o Discord.");
+            });
+        }
 
-    <!-- Total/Botao Reset -->
+        function faturarPedido() {
+            const nomeFuncionario = document.getElementById("nomeFuncionario").value.trim();
+            const codigoPedido = document.getElementById("codigoPedido").value.trim();
 
-    <div class="selected-items">
-        <h2>▶ Itens Selecionados ◀</h2>
-        <ul id="selected-items-list"></ul>
-    </div>
-      
-    <div class="total">Total: <span id="total-amount">0</span> € </div>
-    <button id="reset-button">Reiniciar</button>
+            const codigoGerado = localStorage.getItem("codigoAutenticacao");
 
-    <script src="script.js"></script>
+            if (!nomeFuncionario) {
+                alert("Por favor, insira o nome do funcionário.");
+                return;
+            }
+
+            if (!codigoPedido) {
+                alert("Por favor, insira o código do pedido.");
+                return;
+            }
+
+            if (codigoPedido !== codigoGerado) {
+                alert("Código de autenticação inválido.");
+                return;
+            }
+
+            if (itens.length === 0) {
+                alert("Nenhum item selecionado.");
+                return;
+            }
+
+            let mensagem = `🧾 **Fatura criada por:** ${nomeFuncionario}\n**Código do Pedido:** ${codigoPedido}\n\n**Itens:**\n`;
+            itens.forEach(item => {
+                mensagem += `• ${item.nome} x${item.quantidade} - ${(item.preco * item.quantidade).toFixed(2)}€\n`;
+            });
+
+            const total = document.getElementById("total").innerText;
+            mensagem += `\n💰 **Total:** ${total}`;
+
+            const webhookUrl = "https://canary.discord.com/api/webhooks/1357507616544133250/zhbW9dWKGpg6s_epty_EWLJq4bX8mB85vgktHhhmBgUKldBXWcqDED0a77_qY-JeTTbU";
+
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ content: mensagem })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Fatura enviada com sucesso!");
+                } else {
+                    alert("Erro ao enviar fatura.");
+                }
+            })
+            .catch(error => {
+                alert("Erro ao enviar fatura.");
+            });
+        }
+
+        // Inicializar a página com os itens
+        gerarItens();
+    </script>
+
 </body>
-</html>
 
+</html>

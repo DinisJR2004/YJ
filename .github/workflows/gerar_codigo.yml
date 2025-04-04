@@ -1,0 +1,47 @@
+name: Gerar Código para Discord
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # Executa todos os dias às 3h da manhã UTC
+  workflow_dispatch:  # Permite rodar o workflow manualmente
+
+jobs:
+  gerarCodigo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v2
+
+      - name: Instalar dependências
+        run: |
+          sudo apt-get install nodejs
+          sudo apt-get install npm
+
+      - name: Instalar pacotes necessários
+        run: npm install node-fetch
+
+      - name: Rodar o script de geração de código
+        run: |
+          node -e "
+            const fetch = require('node-fetch');
+            const codigo = Math.floor(100000 + Math.random() * 900000);
+            const mensagem = \`🚨 ||@here|| **Novo código de autenticação:** ${codigo}\`;
+            const webhookUrl = 'https://canary.discord.com/api/webhooks/1357507616544133250/zhbW9dWKGpg6s_epty_EWLJq4bX8mB85vgktHhhmBgUKldBXWcqDED0a77_qY-JeTTbU'; 
+
+            fetch(webhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ content: mensagem })
+            })
+            .then(response => {
+              if (response.ok) {
+                console.log('Código enviado com sucesso para o Discord!');
+              } else {
+                console.error('Erro ao enviar o código para o Discord.');
+              }
+            })
+            .catch(error => {
+              console.error('Erro ao enviar o código para o Discord:', error);
+            });
+          "
