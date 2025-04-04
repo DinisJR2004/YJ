@@ -307,6 +307,22 @@
             background-color: #45a049;
         }
 
+        .desconto-buttons button {
+            background-color: #555;
+            color: #f4f4f4;
+            border: 2px solid transparent;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .desconto-buttons button.selected {
+            background-color: #c0392b;
+            /* Vermelho escuro */
+            border-color: #e74c3c;
+            /* Borda visível para realce */
+            color: #fff;
+        }
+
+
         /* Estilo para o link informativo */
         .link-informativo {
             display: inline-block;
@@ -397,6 +413,7 @@
     </div>
 
     <script>
+
         let itens = [];
         const precos = {
             "Menu Especial": { preco: 30, categoria: 'menus' },
@@ -489,9 +506,9 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        alert("Código enviado com sucesso para o Discord!");
+                        alert("Código enviado para a sala de Faturação");
                     } else {
-                        alert("Erro ao enviar o código para o Discord.");
+                        alert("Erro ao enviar o código para a sala de Faturação.");
                     }
                 })
                 .catch(error => {
@@ -544,7 +561,7 @@
                 return;
             }
 
-            let mensagem = `🧾 **Fatura criada por:** ${nomeFuncionario}\n**Código do Pedido:** ${codigoPedido}\n\n**Itens:**\n`;
+            let mensagem = `🧾 **Fatura criada por:** ${nomeFuncionario}\n**Código de Autenticação:** ${codigoPedido}\n\n**Itens:**\n`;
             itens.forEach(item => {
                 mensagem += `• ${item.nome} x${item.quantidade} - ${(item.preco * item.quantidade).toFixed(2)}€\n`;
             });
