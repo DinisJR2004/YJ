@@ -454,13 +454,17 @@
 
         function calcularTotal() {
             let total = 0;
-            let desconto = parseFloat(document.querySelector('.desconto-buttons button.selected').getAttribute('data-desconto'));
+            let desconto = parseFloat(document.querySelector('.desconto-buttons button.selected').getAttribute('data-desconto')) || 0; // Garantir que o desconto seja 0 se nenhum for selecionado
 
             itens.forEach(item => {
-                total += (item.preco * item.quantidade) * (1 - desconto);
+                if (item.categoria !== 'afiliados') {  // Verificar se o item não é da categoria "afiliados"
+                    total += (item.preco * item.quantidade) * (1 - desconto); // Aplica o desconto somente nos itens não afiliados
+                } else {
+                    total += item.preco * item.quantidade; // Para itens afiliados, aplica o preço normal sem desconto
+                }
             });
 
-            document.getElementById("total").innerText = total.toFixed(2) + "€";
+            document.getElementById("total").innerText = total.toFixed(2) + "€"; // Atualiza o total exibido
         }
 
         function gerarCodigo() {
@@ -477,22 +481,41 @@
         function enviarParaDiscord(codigo) {
             const mensagem = `🚨 **Novo código de autenticação:** ${codigo}`;
             const webhookUrl = "https://canary.discord.com/api/webhooks/1357507616544133250/zhbW9dWKGpg6s_epty_EWLJq4bX8mB85vgktHhhmBgUKldBXWcqDED0a77_qY-JeTTbU";
-            
+
             fetch(webhookUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ content: mensagem })
             })
-            .then(response => {
-                if (response.ok) {
-                    alert("Código enviado com sucesso para o Discord!");
-                } else {
+                .then(response => {
+                    if (response.ok) {
+                        alert("Código enviado com sucesso para o Discord!");
+                    } else {
+                        alert("Erro ao enviar o código para o Discord.");
+                    }
+                })
+                .catch(error => {
                     alert("Erro ao enviar o código para o Discord.");
-                }
-            })
-            .catch(error => {
-                alert("Erro ao enviar o código para o Discord.");
-            });
+                });
+        }
+
+        function removerItem(index) {
+            // Remove o item do array de itens usando o índice
+            itens.splice(index, 1);
+
+            // Atualiza a lista de itens exibida
+            atualizarLista();
+        }
+
+        function atualizarQuantidade(index, novaQuantidade) {
+            // Verifica se a quantidade é válida (não negativa e maior que 0)
+            if (novaQuantidade < 1) return;
+
+            // Atualiza a quantidade do item no array
+            itens[index].quantidade = parseInt(novaQuantidade);
+
+            // Atualiza a lista e o total após a modificação
+            atualizarLista();
         }
 
         function faturarPedido() {
@@ -536,17 +559,25 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ content: mensagem })
             })
-            .then(response => {
-                if (response.ok) {
-                    alert("Fatura enviada com sucesso!");
-                } else {
+                .then(response => {
+                    if (response.ok) {
+                        alert("Fatura enviada com sucesso!");
+                    } else {
+                        alert("Erro ao enviar fatura.");
+                    }
+                })
+                .catch(error => {
                     alert("Erro ao enviar fatura.");
-                }
-            })
-            .catch(error => {
-                alert("Erro ao enviar fatura.");
-            });
+                });
         }
+
+        document.querySelectorAll('.desconto-buttons button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.desconto-buttons button').forEach(btn => btn.classList.remove('selected')); // Remover a classe "selected" de todos
+                button.classList.add('selected'); // Adicionar a classe "selected" ao botão clicado
+                calcularTotal(); // Recalcular o total quando um desconto for selecionado
+            });
+        });
 
         // Inicializar a página com os itens
         gerarItens();
