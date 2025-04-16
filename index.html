@@ -388,6 +388,7 @@
                 <h3>Desconto:</h3>
                 <div class="desconto-buttons">
                     <button data-desconto="0" class="selected">0%</button>
+                    <button data-desconto="0.25">25%</button>
                     <button data-desconto="0.35">35%</button>
                     <button data-desconto="0.50">50%</button>
                 </div>
@@ -416,15 +417,69 @@
 
         let itens = [];
         const precos = {
-            "Menu Especial": { preco: 30, categoria: 'menus' },
-            "Prato Principal": { preco: 20, categoria: 'comida' },
-            "Sobremesa": { preco: 7, categoria: 'comida' },
-            "Bebida": { preco: 5, categoria: 'bebida' },
-            "Cerveja": { preco: 3, categoria: 'bebidasEspirituais' },
-            "Vinho": { preco: 12, categoria: 'bebidasEspirituais' },
-            "Salada": { preco: 6, categoria: 'afiliados' },
-            "Pizza": { preco: 15, categoria: 'afiliados' },
-            "Aluguel de Moto": { preco: 50, categoria: 'aluguerMotos' }
+
+            // Menus
+            "Menu Motard (3 de cada) sem Bebidas | Carne e Peixe": { preco: 16000, categoria: 'menus' },
+            "Menu Motard (3 de cada) com Bebidas | Carne e Peixe": { preco: 16500, categoria: 'menus' },
+            "Menu Vipers (5 de cada) sem Bebidas | Carne e Peixe": { preco: 21000, categoria: 'menus' },
+            "Menu Vipers (5 de cada) com Bebidas | Carne e Peixe": { preco: 21500, categoria: 'menus' },
+            "Menu Yellow Jack (10 de cada) sem Bebidas | Carne e Peixe": { preco: 30000, categoria: 'menus' },
+            "Menu Yellow Jack (10 de cada) com Bebidas | Carne e Peixe": { preco: 30500, categoria: 'menus' },
+
+            "Menu Motard (3 de cada) sem Bebidas | Carne": { preco: 7500, categoria: 'menus' },
+            "Menu Motard (3 de cada) com Bebidas | Carne": { preco: 8000, categoria: 'menus' },
+            "Menu Vipers (5 de cada) sem Bebidas | Carne": { preco: 14000, categoria: 'menus' },
+            "Menu Vipers (5 de cada) com Bebidas | Carne": { preco: 14500, categoria: 'menus' },
+            "Menu Yellow Jack (10 de cada) sem Bebidas | Carne": { preco: 21000, categoria: 'menus' },
+            "Menu Yellow Jack (10 de cada) com Bebidas | Carne": { preco: 21500, categoria: 'menus' },
+
+            "Menu Motard (3 de cada) sem Bebidas | Peixe": { preco: 12000, categoria: 'menus' },
+            "Menu Motard (3 de cada) com Bebidas | Peixe": { preco: 12500, categoria: 'menus' },
+            "Menu Vipers (5 de cada) sem Bebidas | Peixe": { preco: 17000, categoria: 'menus' },
+            "Menu Vipers (5 de cada) com Bebidas | Peixe": { preco: 17500, categoria: 'menus' },
+            "Menu Yellow Jack (10 de cada) sem Bebidas | Peixe": { preco: 23000, categoria: 'menus' },
+            "Menu Yellow Jack (10 de cada) com Bebidas | Peixe": { preco: 23500, categoria: 'menus' },
+
+            // Comida
+            "Francesinha": { preco: 1000, categoria: 'comida' },
+            "Bifana": { preco: 1000, categoria: 'comida' },
+            "Bolinho de Bacalhau": { preco: 1000, categoria: 'comida' },
+            "Pataniscas": { preco: 1000, categoria: 'comida' },
+            "Tremoços": { preco: 500, categoria: 'comida' },
+            "Hamburguer": { preco: 110, categoria: 'comida' },
+            "Chocolate": { preco: 85, categoria: 'comida' },
+            "Bolinho": { preco: 70, categoria: 'comida' },
+            "Sanduíche": { preco: 55, categoria: 'comida' },
+            "Pão": { preco: 50, categoria: 'comida' },
+
+            // Bebidas
+            "Vinho": { preco: 1500, categoria: 'bebida' },
+            "Cerveja": { preco: 250, categoria: 'bebida' },
+            "Ice-Tea": { preco: 65, categoria: 'bebida' },
+            "Coca-Cola": { preco: 35, categoria: 'bebida' },
+            "Leite": { preco: 35, categoria: 'bebida' },
+            "Café": { preco: 25, categoria: 'bebida' },
+            "Água": { preco: 15, categoria: 'bebida' },
+
+            // Bebidas Espirituais
+            "Vodka": { preco: 1500, categoria: 'bebidasEspirituais' },
+            "Tequila": { preco: 1500, categoria: 'bebidasEspirituais' },
+            "Whiskey": { preco: 1500, categoria: 'bebidasEspirituais' },
+            "Vodka": { preco: 1500, categoria: 'bebidasEspirituais' },
+
+            // Afiliados
+            "Mensal (30 dias)": { preco: 200000, categoria: 'afiliados' },
+            "Trimestral (90 dias)": { preco: 500000, categoria: 'afiliados' },
+
+            // Aluguer de Motos
+            "Captain Rider": { preco: 75000, categoria: 'aluguerMotos' },
+            "Chimera": { preco: 100000, categoria: 'aluguerMotos' },
+            "FCR 1000": { preco: 50000, categoria: 'aluguerMotos' },
+            "KCC Queens Warrior": { preco: 75000, categoria: 'aluguerMotos' },
+            "Sanctus": { preco: 100000, categoria: 'aluguerMotos' },
+            "Wolfsbane": { preco: 50000, categoria: 'aluguerMotos' },
+            "Zombie Bobber": { preco: 75000, categoria: 'aluguerMotos' },
+            "Zombie Chopper": { preco: 75000, categoria: 'aluguerMotos' }
         };
 
         function gerarItens() {
