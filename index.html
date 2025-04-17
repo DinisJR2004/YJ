@@ -371,6 +371,11 @@
         </div>
 
         <div class="categoria">
+            <h3>Bebidas Especiais</h3>
+            <div class="selecao-container" id="selecaoBebidasExclusivas"></div>
+        </div>
+
+        <div class="categoria">
             <h3>Afiliados</h3>
             <div class="selecao-container" id="selecaoAfiliados"></div>
         </div>
@@ -398,7 +403,6 @@
                 <input type="text" id="nomeFuncionario" placeholder="Nome do Funcionário"
                     style="padding: 10px; border-radius: 5px; border: 1px solid #444; background-color: #555; color: #f4f4f4;">
 
-                <!-- Novo input para o código -->
                 <input type="text" id="codigoPedido" placeholder="Código do Pedido"
                     style="padding: 10px; border-radius: 5px; border: 1px solid #444; background-color: #555; color: #f4f4f4;">
 
@@ -460,12 +464,18 @@
             "Leite": { preco: 35, categoria: 'bebida' },
             "Café": { preco: 25, categoria: 'bebida' },
             "Água": { preco: 15, categoria: 'bebida' },
+            "Mojito": { preco: 5000, categoria: 'bebida' },
+            "Sex on the Beach": { preco: 5000, categoria: 'bebida' },
 
             // Bebidas Espirituais
             "Vodka": { preco: 1500, categoria: 'bebidasEspirituais' },
             "Tequila": { preco: 1500, categoria: 'bebidasEspirituais' },
             "Whiskey": { preco: 1500, categoria: 'bebidasEspirituais' },
             "Vodka": { preco: 1500, categoria: 'bebidasEspirituais' },
+
+            // Bebidas Exclusivas
+            "Mojito": { preco: 5000, categoria: 'bebidasExclusivas' },
+            "Sex on the Beach": { preco: 5000, categoria: 'bebidasExclusivas' },
 
             // Afiliados
             "Mensal (30 dias)": { preco: 200000, categoria: 'afiliados' },
@@ -483,7 +493,7 @@
         };
 
         function gerarItens() {
-            const categorias = ['menus', 'comida', 'bebida', 'bebidasEspirituais', 'afiliados', 'aluguerMotos'];
+            const categorias = ['menus', 'comida', 'bebida', 'bebidasEspirituais', 'bebidasExclusivas','afiliados', 'aluguerMotos'];
 
             categorias.forEach(categoria => {
                 const container = document.getElementById(`selecao${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`);
@@ -529,14 +539,14 @@
             let desconto = parseFloat(document.querySelector('.desconto-buttons button.selected').getAttribute('data-desconto')) || 0; // Garantir que o desconto seja 0 se nenhum for selecionado
 
             itens.forEach(item => {
-                if (item.categoria !== 'afiliados') {  // Verificar se o item não é da categoria "afiliados"
-                    total += (item.preco * item.quantidade) * (1 - desconto); // Aplica o desconto somente nos itens não afiliados
+                if (item.categoria !== 'afiliados' && item.categoria !== 'bebidasExclusivas') {  
+                    total += (item.preco * item.quantidade) * (1 - desconto); 
                 } else {
-                    total += item.preco * item.quantidade; // Para itens afiliados, aplica o preço normal sem desconto
+                    total += item.preco * item.quantidade; 
                 }
             });
 
-            document.getElementById("total").innerText = total.toFixed(2) + "€"; // Atualiza o total exibido
+            document.getElementById("total").innerText = total.toFixed(2) + "€"; 
         }
 
         function gerarCodigo() {
@@ -546,7 +556,7 @@
 
         function gerarCodigoAgora() {
             const codigo = gerarCodigo();
-            localStorage.setItem("codigoAutenticacao", codigo); // Armazenando o código gerado no localStorage
+            localStorage.setItem("codigoAutenticacao", codigo); 
             enviarParaDiscord(codigo);
         }
 
@@ -572,21 +582,16 @@
         }
 
         function removerItem(index) {
-            // Remove o item do array de itens usando o índice
             itens.splice(index, 1);
 
-            // Atualiza a lista de itens exibida
             atualizarLista();
         }
 
         function atualizarQuantidade(index, novaQuantidade) {
-            // Verifica se a quantidade é válida (não negativa e maior que 0)
             if (novaQuantidade < 1) return;
 
-            // Atualiza a quantidade do item no array
             itens[index].quantidade = parseInt(novaQuantidade);
 
-            // Atualiza a lista e o total após a modificação
             atualizarLista();
         }
 
@@ -645,13 +650,12 @@
 
         document.querySelectorAll('.desconto-buttons button').forEach(button => {
             button.addEventListener('click', () => {
-                document.querySelectorAll('.desconto-buttons button').forEach(btn => btn.classList.remove('selected')); // Remover a classe "selected" de todos
-                button.classList.add('selected'); // Adicionar a classe "selected" ao botão clicado
-                calcularTotal(); // Recalcular o total quando um desconto for selecionado
+                document.querySelectorAll('.desconto-buttons button').forEach(btn => btn.classList.remove('selected')); 
+                button.classList.add('selected'); 
+                calcularTotal(); 
             });
         });
 
-        // Inicializar a página com os itens
         gerarItens();
     </script>
 
